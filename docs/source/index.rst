@@ -26,7 +26,7 @@
 
 .. note::
 
-	 You have to configure SessionMiddleware if your framework does not use it already.
+	 You have to configure `SessionMiddleware` (must be placed AFTER ``repoze.who`` middleware) if your framework does not use it already.
 	
 .. warning::
 
