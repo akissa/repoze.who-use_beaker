@@ -25,8 +25,8 @@ class BeakerAuthTktPlugin(object):
         """Return identity from Beaker session"""
 
         s = self._get_beaker(environ)
-        identity = s.get(self.key_name, None)
-        return identity
+        userid = s.get(self.key_name, None)
+        return {'repoze.who.userid': userid}
 
     def forget(self, environ, identity):
         """Does not return any headers,
@@ -51,10 +51,11 @@ class BeakerAuthTktPlugin(object):
         
         """
         s = self._get_beaker(environ)
-        who_dict = s.get(self.key_name, None)
+        userid = s.get(self.key_name)
 
-        if who_dict != identity:
-            s[self.key_name] = identity
+        iuserid = identity.get('repoze.who.userid')
+        if userid != iuserid:
+            s[self.key_name] = iuserid
             s.save()
         return []
 
