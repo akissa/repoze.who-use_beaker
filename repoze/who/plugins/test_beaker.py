@@ -70,10 +70,13 @@ class TestBeakerAuthTktPlugin(FixtureBase):
         plugin.remember(environ, identity)
         r = plugin.identify(environ)
         self.assertEqual(r, identity)
+        user_in_session = environ['beaker.session'].get('repoze.who.tkt')
+        self.assertEqual(user_in_session, 'chiwawa')
 
         plugin.forget(environ, identity)
         r = plugin.identify(environ)
         self.assertEqual(r, None)
+        self.assert_(not environ['beaker.session'].has_key('repoze.who.tkt'))
 
     def test_call_twice(self):
         plugin = self._make_one()
@@ -83,8 +86,11 @@ class TestBeakerAuthTktPlugin(FixtureBase):
         plugin.forget(environ, identity)
         r = plugin.identify(environ)
         self.assertEqual(r, None)
+        self.assert_(not environ['beaker.session'].has_key('repoze.who.tkt'))
 
         plugin.remember(environ, identity)
         plugin.remember(environ, identity)
         r = plugin.identify(environ)
         self.assertEqual(r, identity)
+        user_in_session = environ['beaker.session'].get('repoze.who.tkt')
+        self.assertEqual(user_in_session, 'chiwawa')

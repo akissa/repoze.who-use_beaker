@@ -26,7 +26,8 @@ class BeakerAuthTktPlugin(object):
 
         s = self._get_beaker(environ)
         userid = s.get(self.key_name, None)
-        return {'repoze.who.userid': userid}
+        if userid:
+            return {'repoze.who.userid': userid}
 
     def forget(self, environ, identity):
         """Does not return any headers,
