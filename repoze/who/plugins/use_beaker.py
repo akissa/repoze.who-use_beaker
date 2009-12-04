@@ -11,7 +11,7 @@ from zope.interface import implements
 from repoze.who.interfaces import IIdentifier
 
 
-class BeakerAuthTktPlugin(object):
+class UseBeakerPlugin(object):
 
     implements(IIdentifier)
     
@@ -74,4 +74,4 @@ class BeakerAuthTktPlugin(object):
         return '<%s %s>' % (self.__class__.__name__, id(self))
 
 def make_plugin(key_name='repoze.who.tkt', session_name='beaker.session'):
-    return BeakerAuthTktPlugin(key_name, session_name)
+    return UseBeakerPlugin(key_name, session_name)

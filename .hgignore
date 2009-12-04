@@ -10,4 +10,4 @@ syntax: regexp
 ^include/
 ^lib/
 ^Makefile
-^repoze.who.plugins.beaker_tkt.egg-info/
+^repoze.who.plugins.use_beaker.egg-info/

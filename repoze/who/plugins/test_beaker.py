@@ -37,17 +37,17 @@ class FixtureBase(Base):
             'repoze.who.logger':DummyLogger(),
         }).get('/')
 
-class TestBeakerAuthTktPlugin(FixtureBase):
+class TestUseBeakerPlugin(FixtureBase):
     def _getTargetClass(self):
-        from repoze.who.plugins.beaker_tkt import BeakerAuthTktPlugin
-        return BeakerAuthTktPlugin
+        from repoze.who.plugins.use_beaker import UseBeakerPlugin
+        return UseBeakerPlugin
 
     def _make_one(self, **kw):
         plugin = self._getTargetClass()(**kw)
         return plugin
 
     def test_make_plugin(self):
-        from repoze.who.plugins.beaker_tkt import make_plugin
+        from repoze.who.plugins.use_beaker import make_plugin
         plugin = make_plugin(key_name='foo', session_name='bar')
 
         self.assertEqual(plugin.key_name, 'foo')
