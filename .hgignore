@@ -1,0 +1,13 @@
+syntax: regexp
+
+.*\.pyc
+.*\.orig
+.*\.swp
+^\.coverage
+^bin/
+^build/
+^dist/
+^include/
+^lib/
+^Makefile
+^repoze.who.plugins.beaker_tkt.egg-info/
