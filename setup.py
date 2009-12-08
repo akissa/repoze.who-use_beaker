@@ -7,7 +7,7 @@ version = '0.1'
 
 setup(name='repoze.who-use_beaker',
       version=version,
-      description="Identifier plugin with beaker.session cache implementation",
+      description="Identifier plugin for repoze.who with beaker.session cache implementation",
       long_description=open('README.txt').read(),
       classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='beaker session auth repoze.who userid',

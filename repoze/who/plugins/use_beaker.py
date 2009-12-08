@@ -30,8 +30,7 @@ class UseBeakerPlugin(object):
             return {'repoze.who.userid': userid}
 
     def forget(self, environ, identity):
-        """Does not return any headers,
-        just deletes the session entry.
+        """Does not return any headers, just deletes the session entry.
         
         """
 
@@ -47,8 +46,7 @@ class UseBeakerPlugin(object):
         return []
     
     def remember(self, environ, identity):
-        """Does not return any headers,
-        just saves identity to Beaker session
+        """Does not return any headers, just saves identity to Beaker session
         
         """
         s = self._get_beaker(environ)
@@ -65,8 +63,8 @@ class UseBeakerPlugin(object):
         s = environ.get(self.session_name, None)
 
         if not s:
-            raise ValueError('No Beaker session (%s) in environment'\
-                % self.session_name)
+            raise ValueError('No Beaker session (%s) in environment' % \
+                self.session_name)
 
         return s
 
