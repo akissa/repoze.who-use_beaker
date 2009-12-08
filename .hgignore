@@ -9,5 +9,4 @@ syntax: regexp
 ^dist/
 ^include/
 ^lib/
-^Makefile
-^repoze.who.plugins.use_beaker.egg-info/
+^repoze.who_use_beaker.egg-info/
