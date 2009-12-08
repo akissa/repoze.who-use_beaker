@@ -61,7 +61,7 @@ class TestUseBeakerPlugin(FixtureBase):
         verifyClass(IIdentifier, klass)
 
     def test_usual_workflow(self):
-        plugin = self._make_one()
+        plugin = self._make_one(delete_on_logout=True)
         identity = {'repoze.who.userid': 'chiwawa'}
         environ = self.session_app.request.environ
 
@@ -77,7 +77,8 @@ class TestUseBeakerPlugin(FixtureBase):
         plugin.forget(environ, identity)
         r = plugin.identify(environ)
         self.assertEqual(r, None)
-        self.assert_(not environ['beaker.session'].has_key('repoze.who.tkt'))
+        # Session is completely empty (new)
+        self.assertEquals(str(environ['beaker.session']), '{}')
 
     def test_call_twice(self):
         plugin = self._make_one()

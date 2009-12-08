@@ -6,6 +6,29 @@ replacing repoze.who.plugins.auth_tkt_ in order to store the user data in
 `beaker session`_. Currently the only bit it stores is the `userid` under key
 `repoze.who.tkt`.
 
+``UseBeakerPlugin`` takes the following parameters:
+
+- `key_name` (default: `repoze.who.tkt`) - the key name to store the userid
+  under::
+
+  >>> userid = session['repoze.who.tkt']
+
+- `session_name` (default: `beaker.session`) - the key name of the beaker
+  session in the WSGI environment::
+
+  >>> session = environ['beaker.session']
+
+- `delete_on_logout` (default: `false`) - if `false` then on logout
+  ``session['repoze.who.tkt']`` is erased but the other session data stays and
+  will be reused during the next session. If you want the session to be
+  invalidated pass ``delete_on_logout = True``
+
+Usually you should use `make_plugin` method instead of instantiating
+`UseBeakerPlugin` directly::
+
+    >>> from repoze.who.plugins import make_plugin
+    >>> plugin = make_plugin(**kw)
+
 In order to properly use the `beaker.session` `repoze.who` (with
 `repoze.who-use_beaker`) has to be placed lower in the WSGI stack. Usually this
 means that you have to define `repoze.who` in your framework's middleware

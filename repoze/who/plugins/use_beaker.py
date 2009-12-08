@@ -16,10 +16,12 @@ class UseBeakerPlugin(object):
     implements(IIdentifier)
     
     def __init__(self,
-                 key_name='repoze.who.tkt',
-                 session_name='beaker.session'):
+            key_name='repoze.who.tkt',
+            session_name='beaker.session',
+            delete_on_logout=False):
         self.key_name = key_name
         self.session_name = session_name
+        self.delete_on_logout = delete_on_logout
 
     def identify(self, environ):
         """Return identity from Beaker session"""
@@ -36,12 +38,18 @@ class UseBeakerPlugin(object):
 
         s = self._get_beaker(environ)
 
-        try:
-            del s[self.key_name]
-        except:
-            pass
+        if self.delete_on_logout:
+            # When the user logs out remove the session altogether
+            s.delete()
         else:
-            s.save()
+            # Only erase the user name. If the user logs in again he will get
+            # the same session
+            try:
+                del s[self.key_name]
+            except:
+                pass
+            else:
+                s.save()
 
         return []
     
