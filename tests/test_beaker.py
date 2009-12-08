@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from beaker.middleware import SessionMiddleware
+from unittest import TestCase
 
+from beaker.middleware import SessionMiddleware
 from webob import Request, Response
 from webtest import TestApp
-from repoze.who.tests import Base, DummyIdentifier
+from repoze.who.tests.test_middleware import DummyIdentifier
 
 class DummyLogger(object):
 
@@ -25,7 +26,7 @@ def app(environ, start_response):
     req.environ['paste.testing_variables']['response'] = res
     return res(environ, start_response)
 
-class FixtureBase(Base):
+class FixtureBase(TestCase):
     def setUp(self):
         self.plugin = self._make_one()
         self.app = TestApp(app, extra_environ={
