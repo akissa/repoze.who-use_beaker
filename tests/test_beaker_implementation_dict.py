@@ -1,9 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from unittest import TestCase
+
+from beaker.middleware import SessionMiddleware
+from webob import Request, Response
+from webtest import TestApp
+from repoze.who.tests.test_middleware import DummyIdentifier
 from test_beaker import TestBaseUseBeakerPlugin
 
-class TestUseBeakerPluginStringImplementation(TestBaseUseBeakerPlugin):
+class TestUseBeakerPluginDictionaryImplementation(TestBaseUseBeakerPlugin):
 
     def test_usual_workflow(self):
         plugin = self._make_one(delete_on_logout=True)
@@ -17,8 +23,8 @@ class TestUseBeakerPluginStringImplementation(TestBaseUseBeakerPlugin):
         r = plugin.identify(environ)
         self.assertEqual(r, identity)
         # the following is implementation dependant
-        user_in_session = environ['beaker.session'].get('repoze.who.tkt')
-        self.assertEqual(user_in_session, 'chiwawa')
+        identity_in_session = environ['beaker.session'].get('repoze.who.tkt')
+        self.assertEqual(identity_in_session, identity)
 
         plugin.forget(environ, identity)
         r = plugin.identify(environ)
@@ -41,5 +47,5 @@ class TestUseBeakerPluginStringImplementation(TestBaseUseBeakerPlugin):
         r = plugin.identify(environ)
         self.assertEqual(r, identity)
         # the following is implementation dependant
-        user_in_session = environ['beaker.session'].get('repoze.who.tkt')
-        self.assertEqual(user_in_session, 'chiwawa')
+        identity_in_session = environ['beaker.session'].get('repoze.who.tkt')
+        self.assertEqual(identity_in_session, identity)

@@ -3,8 +3,10 @@ What is repoze.who-use_beaker
 
 `repoze.who-use_beaker` is a repoze.who_ identifier_ plugin. It is aimed at
 replacing repoze.who.plugins.auth_tkt_ in order to store the user data in
-`beaker session`_. Currently the only bit it stores is the `userid` under key
-`repoze.who.tkt`.
+`beaker session`_.
+
+The plugin stores a dictionary containing at least `{'repoze.who.userid': userid}`
+under key `repoze.who.tkt`.
 
 ``UseBeakerPlugin`` takes the following parameters:
 
@@ -22,6 +24,9 @@ replacing repoze.who.plugins.auth_tkt_ in order to store the user data in
   ``session['repoze.who.tkt']`` is erased but the other session data stays and
   will be reused during the next session. If you want the session to be
   invalidated pass ``delete_on_logout = True``
+
+- `alsopersist` (default: `['userdata']`) - a sequence of item keys that are
+  persisted along to `repoze.who.userid`
 
 Usually you should use `make_plugin` method instead of instantiating
 `UseBeakerPlugin` directly::
