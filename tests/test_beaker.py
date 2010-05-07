@@ -38,7 +38,7 @@ class FixtureBase(TestCase):
             'repoze.who.logger':DummyLogger(),
         }).get('/')
 
-class TestUseBeakerPlugin(FixtureBase):
+class TestBaseUseBeakerPlugin(FixtureBase):
     def _getTargetClass(self):
         from repoze.who.plugins.use_beaker import UseBeakerPlugin
         return UseBeakerPlugin
@@ -47,6 +47,7 @@ class TestUseBeakerPlugin(FixtureBase):
         plugin = self._getTargetClass()(**kw)
         return plugin
 
+class TestUseBeakerPlugin(TestBaseUseBeakerPlugin):
     def test_make_plugin(self):
         from repoze.who.plugins.use_beaker import make_plugin
         plugin = make_plugin(key_name='foo', session_name='bar')
@@ -71,8 +72,6 @@ class TestUseBeakerPlugin(FixtureBase):
         plugin.remember(environ, identity)
         r = plugin.identify(environ)
         self.assertEqual(r, identity)
-        user_in_session = environ['beaker.session'].get('repoze.who.tkt')
-        self.assertEqual(user_in_session, 'chiwawa')
 
         plugin.forget(environ, identity)
         r = plugin.identify(environ)
@@ -94,5 +93,3 @@ class TestUseBeakerPlugin(FixtureBase):
         plugin.remember(environ, identity)
         r = plugin.identify(environ)
         self.assertEqual(r, identity)
-        user_in_session = environ['beaker.session'].get('repoze.who.tkt')
-        self.assertEqual(user_in_session, 'chiwawa')

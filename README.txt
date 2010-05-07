@@ -26,7 +26,7 @@ replacing repoze.who.plugins.auth_tkt_ in order to store the user data in
 Usually you should use `make_plugin` method instead of instantiating
 `UseBeakerPlugin` directly::
 
-    >>> from repoze.who.plugins import make_plugin
+    >>> from repoze.who.plugins.use_beaker import make_plugin
     >>> plugin = make_plugin(**kw)
 
 In order to properly use the `beaker.session` `repoze.who` (with
@@ -37,7 +37,7 @@ repoze.what-quickstart_)::
 
     >>> from beaker.middleware import SessionMiddleware
     >>> from repoze.what.plugins.quickstart import setup_sql_auth
-    >>> from repoze.who.plugins import make_plugin as make_beaker_plugin
+    >>> from repoze.who.plugins.use_beaker import make_plugin as make_beaker_plugin
 
     ... # app definition here
 
