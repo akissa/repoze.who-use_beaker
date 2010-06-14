@@ -56,11 +56,11 @@ repoze.what-quickstart_)::
 
     >>> app = SessionMiddleware(app, config)
 
-Mercurial repository is located at bitbucket.org_.
+Git repository is located at GitHub.com_.
 
 .. _repoze.who: http://docs.repoze.org/who
 .. _identifier: http://docs.repoze.org/who/narr.html#identifier-plugins
 .. _beaker session: http://beaker.groovie.org/sessions.html
 .. _repoze.who.plugins.auth_tkt: http://docs.repoze.org/who/narr.html#repoze.who.plugins.auth_tkt.AuthTktCookiePlugin
 .. _repoze.what-quickstart: http://code.gustavonarea.net/repoze.what-quickstart
-.. _bitbucket.org: http://bitbucket.org/kaukas/repoze.who-use_beaker
+.. _GitHub.com: http://github.com/kaukas/repoze.who-use_beaker 
