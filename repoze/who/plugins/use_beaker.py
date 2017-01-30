@@ -36,7 +36,8 @@ class UseBeakerPlugin(object):
 
         _sess = self._get_beaker(environ)
         identity = _sess.get(self.key_name, None)
-        if identity and identity.get('repoze.who.userid'):
+        if identity and isinstance(identity, dict) and \
+                identity.get('repoze.who.userid'):
             return identity
 
     def forget(self, environ, identity):
@@ -65,7 +66,7 @@ class UseBeakerPlugin(object):
         """
         _sess = self._get_beaker(environ)
         pidentity = _sess.get(self.key_name)
-        if pidentity:
+        if pidentity and isinstance(pidentity, dict):
             puserid = pidentity.get('repoze.who.userid')
         else:
             puserid = None
