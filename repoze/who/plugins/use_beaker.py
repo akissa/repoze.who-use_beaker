@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"repoze.who identifier plugin that persists to beaker sessions"
 import re
 
 from zope.interface import implements
@@ -11,12 +12,12 @@ PERSIST_KEYS = ['userdata', 'tokens']
 
 
 class UseBeakerPlugin(object):
-
+    "Identify plugin that uses beaker"
     implements(IIdentifier)
 
-    def __init__(
-        self, key_name='repoze.who.tkt',
-        session_name='beaker.session', delete_on_logout=False,
+    def __init__(  # pylint: disable=dangerous-default-value
+            self, key_name='repoze.who.tkt',
+            session_name='beaker.session', delete_on_logout=False,
             alsopersist=PERSIST_KEYS):
         """Create an identification plugin storing at least the
         ``identity['repoze.who.userid']`` item in a beaker session.
@@ -40,7 +41,7 @@ class UseBeakerPlugin(object):
                 identity.get('repoze.who.userid'):
             return identity
 
-    def forget(self, environ, identity):
+    def forget(self, environ, identity):  # pylint: disable=unused-argument
         """Does not return any headers, just deletes the session entry.
         """
 
@@ -54,7 +55,7 @@ class UseBeakerPlugin(object):
             # the same session
             try:
                 del _sess[self.key_name]
-            except:
+            except BaseException:
                 pass
             else:
                 _sess.save()
@@ -96,8 +97,8 @@ class UseBeakerPlugin(object):
         return '<%s %s>' % (self.__class__.__name__, id(self))
 
 
-def make_plugin(
-    key_name='repoze.who.tkt', session_name='beaker.session',
+def make_plugin(  # pylint: disable=dangerous-default-value
+        key_name='repoze.who.tkt', session_name='beaker.session',
         delete_on_logout=False, alsopersist=PERSIST_KEYS):
     """see :class:`UseBeakerPlugin`"""
     if isinstance(alsopersist, basestring):
