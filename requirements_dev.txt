@@ -1,0 +1,6 @@
+webob
+webtest
+nose
+PasteScript
+repoze.who>=1.0.18
+Beaker>=1.4
