@@ -50,10 +50,12 @@ class TestBaseUseBeakerPlugin(FixtureBase):
 class TestUseBeakerPlugin(TestBaseUseBeakerPlugin):
     def test_make_plugin(self):
         from repoze.who.plugins.use_beaker import make_plugin
-        plugin = make_plugin(key_name='foo', session_name='bar')
+        plugin = make_plugin(
+            key_name='foo', session_name='bar', alsopersist='james , tony')
 
         self.assertEqual(plugin.key_name, 'foo')
         self.assertEqual(plugin.session_name, 'bar')
+        self.assertEqual(plugin.persistkeys, ['james', 'tony'])
 
     def test_implements(self):
         from zope.interface.verify import verifyClass
