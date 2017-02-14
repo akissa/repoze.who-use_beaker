@@ -1,0 +1,7 @@
+webob
+webtest==1.4.3
+nose
+ordereddict
+PasteScript
+repoze.who>=1.0.18
+Beaker>=1.4
