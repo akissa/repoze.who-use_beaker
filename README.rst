@@ -3,8 +3,9 @@ What is repoze.who-use_beaker
 
 .. image:: https://travis-ci.org/akissa/repoze.who-use_beaker.svg?branch=master
     :target: https://travis-ci.org/akissa/repoze.who-use_beaker
-.. image:: https://codecov.io/gh/akissa/repoze.who-use_beaker/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/akissa/repoze.who-use_beaker
+.. image:: https://codeclimate.com/github/akissa/repoze.who-use_beaker/badges/gpa.svg
+   :target: https://codeclimate.com/github/akissa/repoze.who-use_beaker
+   :alt: Code Climate
 
 `repoze.who-use_beaker` is a repoze.who_ identifier_ plugin. It is aimed at
 replacing repoze.who.plugins.auth_tkt_ in order to store the user data in
