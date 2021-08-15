@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from test_beaker import TestBaseUseBeakerPlugin
+from __future__ import absolute_import
+from .test_beaker import TestBaseUseBeakerPlugin
 
 class TestUseBeakerPluginAttributes(TestBaseUseBeakerPlugin):
 

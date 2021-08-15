@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 "repoze.who identifier plugin that persists to beaker sessions"
+from past.builtins import basestring
+from builtins import object
 import re
 
-from zope.interface import implements
+from zope.interface import implementer
 
 from repoze.who.interfaces import IIdentifier
 
@@ -11,9 +13,9 @@ SPLIT_RE = re.compile(r'\s*,\s*')
 PERSIST_KEYS = ['userdata', 'tokens']
 
 
+@implementer(IIdentifier)
 class UseBeakerPlugin(object):
     "Identify plugin that uses beaker"
-    implements(IIdentifier)
 
     def __init__(  # pylint: disable=dangerous-default-value
             self, key_name='repoze.who.tkt',
