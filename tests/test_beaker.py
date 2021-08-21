@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from builtins import str
+from builtins import object
 from unittest import TestCase
 
 from beaker.middleware import SessionMiddleware
@@ -89,7 +91,7 @@ class TestUseBeakerPlugin(TestBaseUseBeakerPlugin):
         plugin.forget(environ, identity)
         r = plugin.identify(environ)
         self.assertEqual(r, None)
-        self.assert_(not environ['beaker.session'].has_key('repoze.who.tkt'))
+        self.assert_('repoze.who.tkt' not in environ['beaker.session'])
 
         plugin.remember(environ, identity)
         plugin.remember(environ, identity)

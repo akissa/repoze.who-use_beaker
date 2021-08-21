@@ -3,8 +3,6 @@
 from setuptools import setup, find_packages
 from os.path import join, dirname
 import sys
-# Fool distutils to accept more than ASCII
-reload(sys).setdefaultencoding('utf-8')
 
 REQUIRES = [
     "PasteScript",

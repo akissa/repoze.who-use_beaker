@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
+from builtins import str
 from unittest import TestCase
 
 from beaker.middleware import SessionMiddleware
 from webob import Request, Response
 from webtest import TestApp
 from repoze.who.tests.test_middleware import DummyIdentifier
-from test_beaker import TestBaseUseBeakerPlugin
+from .test_beaker import TestBaseUseBeakerPlugin
 
 class TestUseBeakerPluginDictionaryImplementation(TestBaseUseBeakerPlugin):
 
@@ -40,7 +42,7 @@ class TestUseBeakerPluginDictionaryImplementation(TestBaseUseBeakerPlugin):
         plugin.forget(environ, identity)
         r = plugin.identify(environ)
         self.assertEqual(r, None)
-        self.assert_(not environ['beaker.session'].has_key('repoze.who.tkt'))
+        self.assert_('repoze.who.tkt' not in environ['beaker.session'])
 
         plugin.remember(environ, identity)
         plugin.remember(environ, identity)
