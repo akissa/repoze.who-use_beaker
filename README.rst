@@ -69,4 +69,4 @@ Git repository is located at GitHub.com_.
 .. _beaker session: http://beaker.groovie.org/sessions.html
 .. _repoze.who.plugins.auth_tkt: http://docs.repoze.org/who/narr.html#repoze.who.plugins.auth_tkt.AuthTktCookiePlugin
 .. _repoze.what-quickstart: http://code.gustavonarea.net/repoze.what-quickstart
-.. _GitHub.com: http://github.com/kaukas/repoze.who-use_beaker 
+.. _GitHub.com: http://github.com/akissa/repoze.who-use_beaker 
